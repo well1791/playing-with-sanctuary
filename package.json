@@ -12,6 +12,7 @@
     "http-errors": "~1.6.2",
     "morgan": "~1.9.0",
     "pug": "2.0.0-beta11",
+    "ramda": "^0.25.0",
     "request": "^2.87.0",
     "sanctuary": "^0.15.0"
   }

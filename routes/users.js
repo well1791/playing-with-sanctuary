@@ -1,14 +1,17 @@
 const express = require('express');
 const request = require('request');
+const R = require('ramda');
 const S = require('sanctuary');
 
 const { AdminType } = require('../src/User/Types');
-const { existInList } = require('../src/User/Handler');
+const { handleUser } = require('../src/User/Handler');
 
 const router = express.Router();
 
-router.get('/:username', function(req, res, next) {
-    const username = req.params.username;
+router.get('/:sth', function(req, res, next) {
+    const sth = req.params.sth;
+    const username = sth;
+
     request({
         uri:  `https://api.github.com/search/users?q=${username}`,
         method: 'GET',
@@ -20,7 +23,8 @@ router.get('/:username', function(req, res, next) {
             email: S.Nothing,
             birthDate: S.Nothing,
         };
-        const result = existInList (admin) (parsedBody);
+
+        const result = handleUser (admin) (parsedBody);
         res.json(result);
     });
 });
